@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useTest } from "./useTest";
+import { useState } from "react";
+
+const PageUno = () => {
+  const data = useTest();
+
+  return <h1>PAGE UNO {data}</h1>;
+};
+
+const PageDos = () => {
+  const data = useTest();
+
+  return <h1>PAGE DOS {data}</h1>;
+};
+
+const PageTres = () => {
+  const data = useTest();
+
+  return <h1>PAGE TRES {data}</h1>;
+};
 
 function App() {
+  const [page, setPage] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {page === 0 && <PageUno />}
+      {page === 1 && <PageDos />}
+      {page === 2 && <PageTres />}
+
+      <button onClick={() => setPage((page + 1) % 3)}>click</button>
     </div>
   );
 }
