@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import axios from "axios";
+import { useState, useEffect } from "react";
 
 const axiosFetcher = async () => {
   const res = await axios("https://jsonplaceholder.typicode.com/todos/1");
@@ -13,8 +14,24 @@ const vanillaFetcher = async () => {
   return json.title;
 };
 
-export const useTest = () => {
-  const { data, error, isLoading } = useSWR("abc", vanillaFetcher);
+// export const useTest = () => {
+//   const { data } = useSWR("abc", vanillaFetcher);
 
-  return data;
+//   return data;
+// };
+
+export const useTest = (id) => {
+  const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await axiosFetcher();
+
+      setResult(data);
+    }
+
+    fetchData();
+  }, []);
+
+  return result;
 };

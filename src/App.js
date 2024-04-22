@@ -4,19 +4,19 @@ import { useTest } from "./useTest";
 import { useState } from "react";
 
 const PageUno = () => {
-  const data = useTest();
+  const data = useTest(1);
 
   return <h1>PAGE UNO {data}</h1>;
 };
 
 const PageDos = () => {
-  const data = useTest();
+  const data = useTest(2);
 
   return <h1>PAGE DOS {data}</h1>;
 };
 
 const PageTres = () => {
-  const data = useTest();
+  const data = useTest(3);
 
   return <h1>PAGE TRES {data}</h1>;
 };
